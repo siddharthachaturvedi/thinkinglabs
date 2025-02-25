@@ -26,7 +26,7 @@ The AI persona? It's grounded in my actual background:
 
 I built this because your vision of accelerating human discovery through collaborative AI resonates deeply with my journey. From federal clouds to biotech, I've seen how AI shines brightest when it empowers human insight.
 
-Want to explore more? The chat interface is live at [thinkinglabs.sidc.ai](https://thinkinglabs.sidc.ai)
+Want to explore more? The chat interface is live at [thinking.sidc.ai](https://thinking.sidc.ai)
 
 Or we could skip the AI middleman and chat directly: [s@sidc.ai](mailto:s@sidc.ai)
 
