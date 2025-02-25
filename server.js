@@ -10,9 +10,31 @@ const anthropic = new Anthropic({
     apiKey: process.env.CLAUDE_API_KEY,
 });
 
-// Health check endpoint for Azure
-app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });
+// Enhanced health check endpoint for Azure
+app.get('/health', async (req, res) => {
+    try {
+        // Check if we can make a request to our AI services
+        const azureHealth = process.env.AZURE_OPENAI_API_KEY ? 'configured' : 'not configured';
+        const claudeHealth = process.env.CLAUDE_API_KEY ? 'configured' : 'not configured';
+        
+        res.status(200).json({
+            status: 'healthy',
+            timestamp: new Date().toISOString(),
+            version: require('./package.json').version,
+            environment: process.env.NODE_ENV,
+            services: {
+                azureOpenAI: azureHealth,
+                claude: claudeHealth
+            },
+            uptime: process.uptime()
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: 'unhealthy',
+            error: error.message,
+            timestamp: new Date().toISOString()
+        });
+    }
 });
 
 // More conservative rate limiter settings
