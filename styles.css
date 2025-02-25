@@ -1,9 +1,27 @@
+/* Root variables with light/dark mode support */
 :root {
     --margin-page: 2em;
     --ui-primary: #000;
     --ui-secondary: #6b7280;
+    --bg-primary: #fff;
+    --bg-secondary: #f8f9fa;
     --comment-bg: #f8f9fa;
     --highlight-bg: #f4f1f1;
+    --border-color: rgba(0,0,0,0.05);
+    --shadow-color: rgba(0,0,0,0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ui-primary: #e4e4e4;
+        --ui-secondary: #9ca3af;
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --comment-bg: #2d2d2d;
+        --highlight-bg: #363636;
+        --border-color: rgba(255,255,255,0.1);
+        --shadow-color: rgba(0,0,0,0.3);
+    }
 }
 
 /* Base styles */
@@ -20,6 +38,8 @@ body {
     padding: 0 var(--margin-page, 20px);
     color: var(--ui-primary);
     text-wrap: pretty;
+    background-color: var(--bg-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 main {
@@ -142,6 +162,7 @@ h1 {
     text-align: center;
     max-width: 800px;
     overflow: hidden;
+    outline: 1px solid var(--border-color);
 }
 
 .thinking-cloud {
@@ -208,12 +229,12 @@ h1 {
 }
 
 .skills-showcase {
-    background: white;
+    background: var(--bg-primary);
     padding: 2em;
     border-radius: 8px;
     margin: 2em 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    border: 1px solid var(--border-color);
 }
 
 .skills-list {
@@ -249,7 +270,7 @@ h1 {
     padding: 1.5em;
     background: var(--comment-bg);
     border-radius: 6px;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
 }
 
 .skill-details h3 {
@@ -288,6 +309,7 @@ h1 {
     padding: 1.5em;
     border-radius: 8px;
     margin: 2em 0;
+    border: 1px solid var(--border-color);
 }
 
 .interactive-demo {
@@ -309,10 +331,10 @@ h1 {
 }
 
 #chat-interface {
-    background: white;
+    background: var(--bg-primary);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 #introduction-container {
@@ -351,19 +373,21 @@ h1 {
 .chat-input {
     display: flex;
     padding: 1em;
-    border-top: 1px solid #eee;
-    background: white;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-primary);
 }
 
 #input-text {
     flex: 1;
     padding: 0.5em;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     margin-right: 0.5em;
     font-family: inherit;
     resize: none;
     height: 40px;
+    background: var(--bg-primary);
+    color: var(--ui-primary);
 }
 
 #send-button {
@@ -391,11 +415,12 @@ h1 {
     padding: 0.75em;
     border-radius: 4px;
     max-width: 80%;
+    outline: 1px solid var(--border-color);
 }
 
 .user-message {
-    background: #f0f0f0;
     margin-left: auto;
+    background-color: var(--highlight-bg);
 }
 
 .response-message {
@@ -404,7 +429,7 @@ h1 {
 
 .error-message {
     background: #fee;
-    color: #c00;
+    color: #f66;
 }
 
 .thinking-message {
@@ -419,13 +444,17 @@ h1 {
     margin-top: 0.5rem;
     width: 8px;
     height: 8px;
-    background: #999;
+    background: var(--ui-secondary);
     border-radius: 50%;
     animation: bounce 1s infinite;
 }
 
 .thinking-dot:nth-child(2) { animation-delay: 0.2s; }
 .thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+
+.thinking-message .model-info {
+    color: var(--ui-secondary);
+}
 
 /* Footer */
 .footnote {
@@ -476,6 +505,10 @@ h1 {
 
     .message {
         max-width: 90%;
+    }
+
+    .external-links ul {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -587,8 +620,8 @@ h1 {
 
 .contact-info a:hover {
     color: var(--ui-primary);
-    background: var(--highlight-bg);
     transform: translateY(-1px);
+    background-color: var(--highlight-bg);
 }
 
 .contact-info i {
@@ -605,17 +638,28 @@ h1 {
 
 #model-select {
     padding: 0.5rem;
-    border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #fff;
+    background-color: var(--bg-primary);
+    color: var(--ui-primary);
     font-family: 'Fira Code', monospace;
     cursor: pointer;
+    outline: 1px solid var(--border-color);
+}
+
+#model-select option {
+    background: var(--bg-primary);
+    color: var(--ui-primary);
 }
 
 #model-select:focus {
     outline: none;
-    border-color: #007bff;
+    outline: 2px solid #007bff;
     box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+#model-select:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
 .model-info {
@@ -626,12 +670,58 @@ h1 {
 }
 
 .system-message {
-    background: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeeba;
+    background: var(--comment-bg);
+    color: var(--ui-secondary);
+    outline: 1px solid var(--border-color);
     padding: 0.75em;
     margin-bottom: 1em;
     border-radius: 4px;
     text-align: center;
     font-style: italic;
+}
+
+/* Updated External Links Section */
+.external-links {
+    padding: 2em;
+    border-radius: 8px;
+    margin: 2em auto;
+    max-width: 800px;
+    background: var(--comment-bg);
+    outline: 1px solid var(--border-color);
+}
+
+.external-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .external-links ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .external-links ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+.external-links a {
+    display: block;
+    padding: 0.75em 1em;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--ui-primary);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: var(--bg-primary);
+    outline: 1px solid var(--border-color);
 }
