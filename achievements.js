@@ -1,47 +1,47 @@
-const achievements = {
-    "AI for Discovery": {
-        role: "Innovator in AI Solutions",
-        details: "Pioneering AI that accelerates human discovery across domains",
+const capabilities = {
+    "Convergent Intelligence": {
+        role: "Architect of AI-Human Synergy",
+        details: "Orchestrating the intersection where artificial intelligence amplifies human discovery",
         highlights: [
-            "Launched Azure OpenAI Service for U.S. Federal Clouds, enabling secure AI adoption",
-            "Led Premonition, an AI-powered biothreat detection system, honored with Fast Company’s World Changing Idea Award",
-            "Orchestrated $500M+ in pharmaceutical deals via AI innovations in life sciences"
+            "Designing systems that enhance rather than replace human cognitive capabilities",
+            "Creating frameworks for ethical AI deployment in critical environments",
+            "Bridging theoretical research with practical, world-changing applications"
         ]
     },
-    "Collaborative Leadership": {
-        role: "Cross-Functional Strategist",
-        details: "Building bridges between research, engineering, and real-world impact",
+    "Emergent Systems": {
+        role: "Builder of Adaptive Solutions",
+        details: "Crafting resilient systems that evolve with changing global challenges",
         highlights: [
-            "Directed global teams to bring Azure OpenAI and Premonition to market",
-            "Teach Organizational Behavior at UC Irvine, fostering collaboration and innovation",
-            "Mentored Techstars London startups, accelerating their growth"
+            "Developing early warning systems for complex global threats",
+            "Creating scalable architectures for enterprise-grade AI deployment",
+            "Establishing cross-functional collaboration frameworks for innovation"
         ]
     },
-    "Entrepreneurial Impact": {
-        role: "Startup Visionary",
-        details: "Driving 0-1 innovation with a focus on social good",
+    "Purposeful Innovation": {
+        role: "Catalyst for Social Impact",
+        details: "Channeling technological advancement toward humanity's greatest needs",
         highlights: [
-            "Co-founded Tathaastu, an AI healthcare startup, recognized by MIT’s Global Entrepreneurship Bootcamp",
-            "Scaled Appslure globally, achieving double-digit revenue growth",
-            "Advised DeepTech ventures as LP at RPV and Loyal VC"
+            "Focusing innovation on climate adaptation, health security, and knowledge preservation",
+            "Building bridges between academic research and commercial application",
+            "Demonstrating technology's potential for equitable global access"
         ]
     },
-    "Ethical AI": {
-        role: "Responsible AI Advocate",
-        details: "Ensuring AI is trustworthy and human-centric",
+    "Ethical Foundations": {
+        role: "Guardian of Responsible Progress",
+        details: "Ensuring that advancement serves humanity's highest aspirations",
         highlights: [
-            "Led Microsoft’s Responsible AI framework implementation",
-            "Developed ethical guidelines for federal AI deployments",
-            "Balanced innovation with safety in high-stakes environments"
+            "Implementing responsible AI frameworks in high-stakes environments",
+            "Balancing innovation velocity with ethical considerations",
+            "Creating trust through transparent and accountable AI systems"
         ]
     },
-    "Lifelong Learning": {
-        role: "Curious Technologist",
-        details: "Continuously evolving through education and exploration",
+    "Continuous Evolution": {
+        role: "Student of Infinite Possibility",
+        details: "Embracing perpetual learning as the foundation of meaningful progress",
         highlights: [
-            "Earned an MBA from INSEAD, focusing on strategy and leadership",
-            "Returned to BITS Pilani for Computer Science (CGPA 9.49), 18 years after my first degree",
-            "Published AI research impacting biology, featured in Nature"
+            "Pursuing knowledge across disciplines to inform holistic solutions",
+            "Adapting methodologies based on emerging challenges and opportunities",
+            "Contributing to the global knowledge base through research and application"
         ]
     }
 };
@@ -50,37 +50,37 @@ document.addEventListener('DOMContentLoaded', function() {
     const skillsContainer = document.querySelector('.skills-showcase');
     const skillsList = skillsContainer.querySelector('.skills-list');
     
-    // Create and display skills
-    Object.keys(achievements).forEach((skill, index) => {
-        const skillSpan = document.createElement('span');
-        skillSpan.className = 'skill-item';
-        skillSpan.textContent = skill;
+    // Create and display capabilities
+    Object.keys(capabilities).forEach((capability, index) => {
+        const capabilitySpan = document.createElement('span');
+        capabilitySpan.className = 'skill-item';
+        capabilitySpan.textContent = capability;
         
-        // Show first skill by default with a slight delay for animation
+        // Show first capability by default with a slight delay for animation
         if (index === 0) {
             setTimeout(() => {
-                skillSpan.classList.add('selected');
-                updateSkillDetails(achievements[skill], true);
+                capabilitySpan.classList.add('selected');
+                updateCapabilityDetails(capabilities[capability], true);
             }, 100);
         }
-        skillsList.appendChild(skillSpan);
+        skillsList.appendChild(capabilitySpan);
 
         // Handle interactions
-        const handleSkillSelect = () => {
+        const handleCapabilitySelect = () => {
             document.querySelectorAll('.skill-item').forEach(s => s.classList.remove('selected'));
-            skillSpan.classList.add('selected');
-            updateSkillDetails(achievements[skill]);
+            capabilitySpan.classList.add('selected');
+            updateCapabilityDetails(capabilities[capability]);
         };
 
-        skillSpan.addEventListener('mouseenter', handleSkillSelect);
-        skillSpan.addEventListener('touchstart', (e) => {
+        capabilitySpan.addEventListener('mouseenter', handleCapabilitySelect);
+        capabilitySpan.addEventListener('touchstart', (e) => {
             e.preventDefault();
-            handleSkillSelect();
+            handleCapabilitySelect();
         });
     });
 });
 
-function updateSkillDetails(achievement, isInitial = false) {
+function updateCapabilityDetails(capability, isInitial = false) {
     const skillDetails = document.querySelector('.skill-details');
     
     // Add fade out effect
@@ -90,10 +90,10 @@ function updateSkillDetails(achievement, isInitial = false) {
     
     setTimeout(() => {
         skillDetails.innerHTML = `
-            <h3>${achievement.role}</h3>
-            <p>${achievement.details}</p>
+            <h3>${capability.role}</h3>
+            <p>${capability.details}</p>
             <ul>
-                ${achievement.highlights.map(highlight => `
+                ${capability.highlights.map(highlight => `
                     <li>${highlight}</li>
                 `).join('')}
             </ul>
