@@ -47,6 +47,13 @@ const capabilities = {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Add a small delay to ensure DOM is fully loaded
+    setTimeout(() => {
+        initializeSkillsShowcase();
+    }, 100);
+});
+
+function initializeSkillsShowcase() {
     const skillsContainer = document.querySelector('.skills-showcase');
     
     // Check if skills container exists
@@ -90,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
             handleCapabilitySelect();
         });
     });
-});
+}
 
 function updateCapabilityDetails(capability, isInitial = false) {
     const skillDetails = document.querySelector('.skill-details');

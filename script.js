@@ -27,8 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const impactStories = document.querySelector('.impact-stories');
     
     if (heroStatement) heroStatement.classList.add('animate-on-scroll');
-    if (valueProposition) valueProposition.classList.add('animate-on-scroll');
-    if (impactStories) impactStories.classList.add('animate-on-scroll');
 
     // Add subtle parallax effect to ASCII art
     const asciiArt = document.querySelector('.ascii-art');
