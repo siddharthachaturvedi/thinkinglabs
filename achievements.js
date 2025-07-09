@@ -48,7 +48,19 @@ const capabilities = {
 
 document.addEventListener('DOMContentLoaded', function() {
     const skillsContainer = document.querySelector('.skills-showcase');
+    
+    // Check if skills container exists
+    if (!skillsContainer) {
+        console.error('Skills showcase container not found');
+        return;
+    }
+    
     const skillsList = skillsContainer.querySelector('.skills-list');
+    
+    if (!skillsList) {
+        console.error('Skills list container not found');
+        return;
+    }
     
     // Create and display capabilities
     Object.keys(capabilities).forEach((capability, index) => {
@@ -61,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 capabilitySpan.classList.add('selected');
                 updateCapabilityDetails(capabilities[capability], true);
-            }, 100);
+            }, 200);
         }
         skillsList.appendChild(capabilitySpan);
 
@@ -83,6 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
 function updateCapabilityDetails(capability, isInitial = false) {
     const skillDetails = document.querySelector('.skill-details');
     
+    if (!skillDetails) {
+        console.error('Skill details container not found');
+        return;
+    }
+    
     // Add fade out effect
     if (!isInitial) {
         skillDetails.style.opacity = '0';
@@ -100,5 +117,5 @@ function updateCapabilityDetails(capability, isInitial = false) {
         `;
         // Fade in
         skillDetails.style.opacity = '1';
-    }, isInitial ? 0 : 300);
+    }, isInitial ? 0 : 200);
 }

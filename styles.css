@@ -14,7 +14,7 @@
     --bg-secondary: #fefefe;
     --header-gradient-1: #1a1a1a;
     --header-gradient-2: #2c2c2c;
-    --section-spacing: 6em;
+    --section-spacing: 3em;
     --mysterious-shadow: 0 8px 32px rgba(0,0,0,0.12);
     --subtle-glow: 0 0 20px rgba(139, 38, 53, 0.1);
 }
@@ -114,7 +114,7 @@ a:hover {
 .section-title {
     font-size: 2.2em;
     font-weight: 300;
-    margin: var(--section-spacing) 0 3em;
+    margin: var(--section-spacing) 0 2em;
     text-align: center;
     font-family: 'Inter', sans-serif;
     position: relative;
@@ -125,7 +125,7 @@ a:hover {
 .section-title::after {
     content: '';
     position: absolute;
-    bottom: -1em;
+    bottom: -0.5em;
     left: 50%;
     transform: translateX(-50%);
     width: 40px;
@@ -137,7 +137,7 @@ a:hover {
 .header {
     max-width: var(--container-4xl, 1400px);
     margin-inline: auto;
-    padding-block: 100px;
+    padding-block: 60px;
     text-align: center;
 }
 
@@ -355,9 +355,9 @@ h1 {
 .hero-statement {
     background: linear-gradient(135deg, rgba(248, 249, 250, 0.9) 0%, rgba(255,255,255, 0.9) 100%);
     backdrop-filter: blur(10px);
-    padding: 4em 3em;
+    padding: 3em 2.5em;
     border-radius: 16px;
-    margin: 4em 0;
+    margin: 2em 0;
     text-align: center;
     box-shadow: var(--mysterious-shadow);
     border: 1px solid rgba(255,255,255,0.3);
@@ -411,14 +411,14 @@ h1 {
 .value-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5em;
-    margin-top: 3em;
+    gap: 2em;
+    margin-top: 2em;
 }
 
 .value-item {
     background: rgba(255,255,255, 0.7);
     backdrop-filter: blur(10px);
-    padding: 2.5em;
+    padding: 2em;
     border-radius: 12px;
     box-shadow: var(--mysterious-shadow);
     border: 1px solid rgba(255,255,255,0.2);
@@ -477,14 +477,14 @@ h1 {
 .impact-stories {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 2.5em;
-    margin: 3em 0;
+    gap: 2em;
+    margin: 2em 0;
 }
 
 .story-item {
     background: rgba(255,255,255, 0.8);
     backdrop-filter: blur(10px);
-    padding: 2.5em;
+    padding: 2em;
     border-radius: 12px;
     box-shadow: var(--mysterious-shadow);
     border-left: 3px solid var(--ui-accent);
@@ -563,7 +563,7 @@ h1 {
 .skills-showcase {
     background: rgba(255,255,255, 0.6);
     backdrop-filter: blur(15px);
-    padding: 4em 3em;
+    padding: 3em 2.5em;
     border-radius: 16px;
     margin: var(--section-spacing) 0;
     box-shadow: var(--mysterious-shadow);
@@ -575,7 +575,7 @@ h1 {
     text-align: center;
     color: var(--ui-secondary);
     font-style: italic;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
     font-weight: 400;
     font-size: 0.95em;
 }
@@ -585,7 +585,7 @@ h1 {
     flex-wrap: wrap;
     gap: 1.2em;
     justify-content: center;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
     line-height: 2;
 }
 
@@ -630,12 +630,12 @@ h1 {
 }
 
 .skill-details {
-    min-height: 180px;
+    min-height: 120px;
     font-size: 0.95em;
     line-height: 1.7;
     opacity: 1;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 2.5em;
+    padding: 2em;
     background: rgba(248, 249, 250, 0.8);
     backdrop-filter: blur(10px);
     border-radius: 12px;
@@ -684,7 +684,7 @@ h1 {
 .why-section {
     background: linear-gradient(135deg, rgba(248, 249, 250, 0.9) 0%, rgba(255,255,255, 0.9) 100%);
     backdrop-filter: blur(10px);
-    padding: 4em 3em;
+    padding: 3em 2.5em;
     border-radius: 16px;
     margin: var(--section-spacing) 0;
     text-align: center;
@@ -705,7 +705,7 @@ h1 {
 .cta-section {
     background: linear-gradient(135deg, var(--ui-primary) 0%, #2c2c2c 100%);
     color: white;
-    padding: 4em 3em;
+    padding: 3em 2.5em;
     border-radius: 16px;
     text-align: center;
     margin: var(--section-spacing) 0;
@@ -750,7 +750,7 @@ h1 {
 
 /* External Links */
 .external-links {
-    margin: 3em 0;
+    margin: 2em 0;
 }
 
 .links-grid {
@@ -819,7 +819,7 @@ h1 {
 /* Footer */
 .footnote {
     text-align: center;
-    margin: 8em 0 3em;
+    margin: 4em 0 2em;
     color: var(--ui-secondary);
     font-style: italic;
     font-size: 1em;
@@ -831,7 +831,7 @@ h1 {
 @media (max-width: 768px) {
     :root {
         --margin-page: 1em;
-        --section-spacing: 4em;
+        --section-spacing: 2em;
     }
 
     .value-grid {
@@ -868,7 +868,7 @@ h1 {
     }
 
     .hero-statement {
-        padding: 3em 2em;
+        padding: 2em 1.5em;
     }
 
     .hero-statement h2 {
@@ -880,7 +880,7 @@ h1 {
     }
 
     .header {
-        padding-block: 60px;
+        padding-block: 40px;
     }
 
     h1 {
