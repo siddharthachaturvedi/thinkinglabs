@@ -88,24 +88,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Event listeners
-    document.getElementById('input-text').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            sendMessage();
-        }
-    });
+    const inputText = document.getElementById('input-text');
+    if (inputText) {
+        inputText.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    }
 
-    document.getElementById('send-button').addEventListener('click', function () {
-        if (!this.disabled) sendMessage();
-    });
+    const sendButton = document.getElementById('send-button');
+    if (sendButton) {
+        sendButton.addEventListener('click', function () {
+            if (!this.disabled) sendMessage();
+        });
+    }
 
-    document.getElementById('input-text').addEventListener('input', function () {
-        const sendButton = document.getElementById('send-button');
-        const isEmpty = this.value.trim() === '';
-        sendButton.disabled = isEmpty;
-        sendButton.classList.toggle('enabled', !isEmpty);
-        sendButton.style.cursor = isEmpty ? 'not-allowed' : 'pointer';
-    });
+    if (inputText) {
+        inputText.addEventListener('input', function () {
+            const sendButton = document.getElementById('send-button');
+            if (sendButton) {
+                const isEmpty = this.value.trim() === '';
+                sendButton.disabled = isEmpty;
+                sendButton.classList.toggle('enabled', !isEmpty);
+                sendButton.style.cursor = isEmpty ? 'not-allowed' : 'pointer';
+            }
+        });
+    }
 
     // Make startChat function globally available
     window.startChat = startChat;
