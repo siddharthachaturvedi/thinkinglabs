@@ -1,12 +1,38 @@
 // Sophisticated interactions and animations
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all animations and interactions
+    // Initialize all features
+    setupThemeToggle();
     initializeScrollAnimations();
     initializeParallaxEffects();
     initializeTypingEffect();
     initializeHoverEffects();
+    initializeCapabilityInteractions();
     initializePerformanceOptimizations();
 });
+
+// Theme Toggle Functionality
+function setupThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    // Check for saved theme preference or default to 'light'
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Add a subtle animation to the toggle
+        themeToggle.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            themeToggle.style.transform = 'scale(1)';
+        }, 150);
+    });
+}
 
 // Enhanced scroll-triggered animations with stagger effects
 function initializeScrollAnimations() {
@@ -30,6 +56,8 @@ function initializeScrollAnimations() {
                     animateGridItems(element.querySelectorAll('.impact-item'), 200);
                 } else if (element.classList.contains('capabilities-showcase')) {
                     animateGridItems(element.querySelectorAll('.capability-item'), 100);
+                } else if (element.classList.contains('vision-metrics')) {
+                    animateGridItems(element.querySelectorAll('.metric-item'), 100);
                 }
                 
                 // Disconnect observer for performance
@@ -42,10 +70,12 @@ function initializeScrollAnimations() {
     const animatableElements = document.querySelectorAll(`
         .philosophy-section,
         .impact-section,
+        .capabilities-section,
         .vision-section,
         .philosophy-grid,
         .impact-timeline,
-        .capabilities-showcase
+        .capabilities-showcase,
+        .vision-metrics
     `);
     
     animatableElements.forEach(element => {
@@ -113,7 +143,7 @@ function initializeTypingEffect() {
     const originalText = nameTitle.textContent;
     const words = originalText.split(' ');
     
-    // Only apply typing effect on larger screens
+    // Only apply typing effect on larger screens and if motion is not reduced
     if (window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         nameTitle.textContent = '';
         nameTitle.style.opacity = '1';
@@ -212,6 +242,34 @@ function initializeHoverEffects() {
     }
 }
 
+// Interactive capability items
+function initializeCapabilityInteractions() {
+    const capabilityItems = document.querySelectorAll('.capability-item');
+    
+    capabilityItems.forEach(item => {
+        const details = item.querySelector('.capability-details');
+        
+        item.addEventListener('mouseenter', () => {
+            // Subtle scale animation for details
+            if (details) {
+                details.style.transform = 'scale(1.02)';
+                details.style.transition = 'transform 0.3s ease';
+            }
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            if (details) {
+                details.style.transform = 'scale(1)';
+            }
+        });
+        
+        // Add click interaction for mobile
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
+}
+
 // Performance optimizations
 function initializePerformanceOptimizations() {
     // Lazy load images
@@ -262,9 +320,22 @@ function initializePerformanceOptimizations() {
             }
         });
     });
+    
+    // Preload critical resources
+    const criticalResources = [
+        'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap'
+    ];
+    
+    criticalResources.forEach(resource => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'style';
+        link.href = resource;
+        document.head.appendChild(link);
+    });
 }
 
-// Add CSS class for completed animations
+// Add CSS classes for animations
 const style = document.createElement('style');
 style.textContent = `
     .animate-in {
@@ -279,11 +350,49 @@ style.textContent = `
     
     .philosophy-card,
     .impact-item,
-    .capability-item {
+    .capability-item,
+    .metric-item {
         opacity: 0;
         transform: translateY(30px);
         transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
                     transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    
+    .capability-item.active {
+        transform: translateY(-8px) scale(1.02) !important;
+        box-shadow: var(--shadow-xl) !important;
+        border-color: var(--accent-sage) !important;
+    }
+    
+    /* Theme transition smoothing */
+    * {
+        transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 0.3s;
+    }
 `;
 document.head.appendChild(style);
+
+// Initialize theme-aware animations
+function initializeThemeAwareAnimations() {
+    const html = document.documentElement;
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                // Trigger any theme-specific animations here
+                document.body.style.transform = 'scale(0.99)';
+                setTimeout(() => {
+                    document.body.style.transform = 'scale(1)';
+                }, 150);
+            }
+        });
+    });
+    
+    observer.observe(html, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+    });
+}
+
+// Initialize theme-aware animations
+initializeThemeAwareAnimations();
