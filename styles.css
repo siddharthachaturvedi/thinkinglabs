@@ -17,6 +17,40 @@
     --section-spacing: 4em;
 }
 
+/* Scroll Animation Styles */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger animation delays for child elements */
+.impact-stories.animate-on-scroll.visible .story-item {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.impact-stories .story-item:nth-child(1) { animation-delay: 0.1s; }
+.impact-stories .story-item:nth-child(2) { animation-delay: 0.2s; }
+.impact-stories .story-item:nth-child(3) { animation-delay: 0.3s; }
+.impact-stories .story-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Base styles */
 html {
     -webkit-font-smoothing: antialiased;
@@ -360,6 +394,14 @@ h1 {
     color: var(--ui-primary);
     font-family: 'Inter', sans-serif;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.story-item h3 i {
+    color: var(--ui-accent);
+    font-size: 1.1em;
 }
 
 .story-item > p {
@@ -561,6 +603,11 @@ h1 {
     color: var(--ui-accent);
     width: 24px;
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.links-grid a:hover i {
+    transform: scale(1.2);
 }
 
 .links-grid a span {

@@ -119,4 +119,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Make startChat function globally available
     window.startChat = startChat;
+
+    // Scroll Animation Observer
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Disconnect observer for this element to improve performance
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements with animate-on-scroll class
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach(element => {
+        observer.observe(element);
+    });
+
+    // Add initial animation classes to elements that should animate
+    const heroStatement = document.querySelector('.hero-statement');
+    const valueProposition = document.querySelector('.value-proposition');
+    
+    if (heroStatement) heroStatement.classList.add('animate-on-scroll');
+    if (valueProposition) valueProposition.classList.add('animate-on-scroll');
 });
