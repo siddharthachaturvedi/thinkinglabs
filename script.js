@@ -1,279 +1,539 @@
-// Sophisticated interactions and animations
+// ===== COSMIC INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all features
-    setupThemeToggle();
+    initializeCosmicSystems();
+    initializeThemeToggle();
+    initializeNavigationSystem();
     initializeScrollAnimations();
-    initializeParallaxEffects();
-    initializeTypingEffect();
-    initializeHoverEffects();
-    initializeCapabilityInteractions();
+    initializeHeroAnimations();
+    initializeInteractiveElements();
     initializePerformanceOptimizations();
 });
 
-// Theme Toggle Functionality
-function setupThemeToggle() {
+// ===== COSMIC SYSTEMS =====
+function initializeCosmicSystems() {
+    createQuantumParticles();
+    initializeNeuralMesh();
+    setupAuroraEffects();
+}
+
+function createQuantumParticles() {
+    const quantumField = document.querySelector('.quantum-field');
+    if (!quantumField) return;
+    
+    // Add more dynamic particles
+    for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'quantum-particle';
+        particle.style.setProperty('--delay', `${Math.random() * 5}s`);
+        particle.style.setProperty('--duration', `${8 + Math.random() * 8}s`);
+        particle.style.setProperty('--x', `${Math.random() * 100}%`);
+        particle.style.setProperty('--y', `${Math.random() * 100}%`);
+        quantumField.appendChild(particle);
+    }
+}
+
+function initializeNeuralMesh() {
+    const meshSvg = document.querySelector('.mesh-svg');
+    if (!meshSvg) return;
+    
+    // Create dynamic mesh connections
+    const paths = meshSvg.querySelectorAll('.mesh-path');
+    paths.forEach((path, index) => {
+        path.style.animationDelay = `${index * 0.5}s`;
+        path.style.animationDuration = `${8 + index * 2}s`;
+    });
+}
+
+function setupAuroraEffects() {
+    const auroraLayer = document.querySelector('.aurora-layer');
+    if (!auroraLayer) return;
+    
+    // Add mouse interaction to aurora
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        
+        auroraLayer.style.background = `
+            radial-gradient(ellipse at ${x}% ${y}%, rgba(139, 38, 53, 0.08) 0%, transparent 70%),
+            radial-gradient(ellipse at ${100-x}% ${100-y}%, rgba(74, 93, 35, 0.08) 0%, transparent 70%)
+        `;
+    });
+}
+
+// ===== CELESTIAL THEME TOGGLE =====
+function initializeThemeToggle() {
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
     
-    // Check for saved theme preference or default to 'light'
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    // Load saved theme or default to dark
+    const savedTheme = localStorage.getItem('cosmic-theme') || 'dark';
     html.setAttribute('data-theme', savedTheme);
     
     themeToggle.addEventListener('click', () => {
         const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
+        // Cosmic transition effect
+        document.body.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
         html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        localStorage.setItem('cosmic-theme', newTheme);
         
-        // Add a subtle animation to the toggle
-        themeToggle.style.transform = 'scale(0.9)';
+        // Add cosmic ripple effect
+        createCosmicRipple(themeToggle);
+        
+        // Reset transition
         setTimeout(() => {
-            themeToggle.style.transform = 'scale(1)';
-        }, 150);
+            document.body.style.transition = '';
+        }, 800);
     });
 }
 
-// Enhanced scroll-triggered animations with stagger effects
+function createCosmicRipple(element) {
+    const ripple = document.createElement('div');
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 2;
+    
+    ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${rect.left + rect.width/2 - size/2}px;
+        top: ${rect.top + rect.height/2 - size/2}px;
+        background: radial-gradient(circle, var(--oxblood) 0%, transparent 70%);
+        border-radius: 50%;
+        transform: scale(0);
+        opacity: 0.6;
+        pointer-events: none;
+        z-index: 9999;
+        animation: cosmicRipple 1s ease-out forwards;
+    `;
+    
+    document.body.appendChild(ripple);
+    
+    // Add ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes cosmicRipple {
+            to {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    setTimeout(() => {
+        ripple.remove();
+        style.remove();
+    }, 1000);
+}
+
+// ===== NAVIGATION SYSTEM =====
+function initializeNavigationSystem() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+    
+    // Smooth scroll with cosmic effects
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                // Add cosmic navigation effect
+                createNavigationPortal(link);
+                
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Active section highlighting
+    const observerOptions = {
+        threshold: 0.3,
+        rootMargin: '-100px 0px -100px 0px'
+    };
+    
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const navLink = document.querySelector(`a[href="#${entry.target.id}"]`);
+            if (navLink) {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    navLink.classList.add('active');
+                }
+            }
+        });
+    }, observerOptions);
+    
+    sections.forEach(section => sectionObserver.observe(section));
+}
+
+function createNavigationPortal(element) {
+    const portal = document.createElement('div');
+    const rect = element.getBoundingClientRect();
+    
+    portal.style.cssText = `
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        left: ${rect.left + rect.width/2}px;
+        top: ${rect.top + rect.height/2}px;
+        background: var(--gradient-cosmic);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        animation: portalExpand 0.6s ease-out forwards;
+    `;
+    
+    document.body.appendChild(portal);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes portalExpand {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(50); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    setTimeout(() => {
+        portal.remove();
+        style.remove();
+    }, 600);
+}
+
+// ===== SCROLL ANIMATIONS =====
 function initializeScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-
-    const staggerObserver = new IntersectionObserver((entries) => {
+    
+    const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const element = entry.target;
                 
-                // Add base animation class
-                element.classList.add('animate-in');
+                // Add cosmic reveal animation
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
                 
-                // Handle staggered animations for grid items
-                if (element.classList.contains('philosophy-grid')) {
-                    animateGridItems(element.querySelectorAll('.philosophy-card'), 150);
-                } else if (element.classList.contains('impact-timeline')) {
-                    animateGridItems(element.querySelectorAll('.impact-item'), 200);
-                } else if (element.classList.contains('capabilities-showcase')) {
-                    animateGridItems(element.querySelectorAll('.capability-item'), 100);
-                } else if (element.classList.contains('vision-metrics')) {
-                    animateGridItems(element.querySelectorAll('.metric-item'), 100);
+                // Handle specific element types
+                if (element.classList.contains('matrix-card')) {
+                    animateMatrixCard(element);
+                } else if (element.classList.contains('timeline-moment')) {
+                    animateTimelineMoment(element);
+                } else if (element.classList.contains('metric-constellation')) {
+                    animateMetricConstellation(element);
                 }
                 
-                // Disconnect observer for performance
-                staggerObserver.unobserve(element);
+                animationObserver.unobserve(element);
             }
         });
     }, observerOptions);
-
-    // Observe all animatable sections
+    
+    // Observe all animatable elements
     const animatableElements = document.querySelectorAll(`
-        .philosophy-section,
-        .impact-section,
-        .capabilities-section,
-        .vision-section,
-        .philosophy-grid,
-        .impact-timeline,
-        .capabilities-showcase,
-        .vision-metrics
+        .matrix-card,
+        .timeline-moment,
+        .metric-constellation,
+        .connection-portal,
+        .dimension-header,
+        .timeline-header,
+        .nexus-invitation
     `);
     
     animatableElements.forEach(element => {
-        // Set initial state
         element.style.opacity = '0';
-        element.style.transform = 'translateY(40px)';
+        element.style.transform = 'translateY(60px)';
         element.style.transition = 'opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1)';
-        
-        staggerObserver.observe(element);
+        animationObserver.observe(element);
     });
 }
 
-// Animate grid items with stagger effect
-function animateGridItems(items, delay) {
-    items.forEach((item, index) => {
+function animateMatrixCard(card) {
+    const icon = card.querySelector('.constellation-icon');
+    const title = card.querySelector('.constellation-title');
+    const essence = card.querySelector('.constellation-essence');
+    const signature = card.querySelector('.constellation-signature');
+    
+    if (icon) {
         setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-        }, index * delay);
+            icon.style.transform = 'scale(1.1) rotate(10deg)';
+            setTimeout(() => {
+                icon.style.transform = 'scale(1) rotate(0deg)';
+            }, 300);
+        }, 200);
+    }
+    
+    [title, essence, signature].forEach((element, index) => {
+        if (element) {
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, 300 + index * 100);
+        }
     });
 }
 
-// Subtle parallax effects for enhanced depth
-function initializeParallaxEffects() {
-    const parallaxElements = [
-        { selector: '.ascii-art', speed: 0.3 },
-        { selector: '.hero-header::before', speed: 0.2 },
-        { selector: '.profile-glow', speed: 0.4 }
-    ];
+function animateTimelineMoment(moment) {
+    const portal = moment.querySelector('.moment-portal');
+    const content = moment.querySelector('.moment-content');
     
-    let ticking = false;
+    if (portal) {
+        setTimeout(() => {
+            portal.style.transform = 'translateX(-50%) scale(1.2)';
+            setTimeout(() => {
+                portal.style.transform = 'translateX(-50%) scale(1)';
+            }, 300);
+        }, 100);
+    }
     
-    function updateParallax() {
-        const scrolled = window.pageYOffset;
-        
-        parallaxElements.forEach(({ selector, speed }) => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach(element => {
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
+    if (content) {
+        setTimeout(() => {
+            content.style.opacity = '1';
+            content.style.transform = 'translateY(0)';
+        }, 200);
+    }
+}
+
+function animateMetricConstellation(metric) {
+    const value = metric.querySelector('.metric-value');
+    const label = metric.querySelector('.metric-label');
+    
+    if (value && value.dataset.count) {
+        animateCounter(value, parseInt(value.dataset.count));
+    }
+    
+    if (label) {
+        setTimeout(() => {
+            label.style.opacity = '1';
+            label.style.transform = 'translateY(0)';
+        }, 500);
+    }
+}
+
+function animateCounter(element, target) {
+    let current = 0;
+    const increment = target / 50;
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            current = target;
+            clearInterval(timer);
+        }
+        element.textContent = Math.floor(current);
+    }, 30);
+}
+
+// ===== HERO ANIMATIONS =====
+function initializeHeroAnimations() {
+    // Animate ASCII hologram
+    const asciiHologram = document.querySelector('.ascii-hologram');
+    if (asciiHologram) {
+        setTimeout(() => {
+            asciiHologram.style.opacity = '1';
+            asciiHologram.style.transform = 'translateY(0) scale(1)';
+        }, 500);
+    }
+    
+    // Animate title letters with stagger
+    const letters = document.querySelectorAll('.letter');
+    letters.forEach((letter, index) => {
+        letter.style.animationDelay = `${0.5 + index * 0.05}s`;
+    });
+    
+    // Animate profile constellation
+    const profileConstellation = document.querySelector('.profile-constellation');
+    if (profileConstellation) {
+        setTimeout(() => {
+            profileConstellation.style.opacity = '1';
+            profileConstellation.style.transform = 'translateY(0)';
+        }, 2000);
+    }
+    
+    // Animate scroll indicator
+    const quantumScroll = document.querySelector('.quantum-scroll');
+    if (quantumScroll) {
+        setTimeout(() => {
+            quantumScroll.style.opacity = '1';
+            quantumScroll.style.transform = 'translateX(-50%) translateY(0)';
+        }, 3000);
+    }
+}
+
+// ===== INTERACTIVE ELEMENTS =====
+function initializeInteractiveElements() {
+    // Matrix card interactions
+    const matrixCards = document.querySelectorAll('.matrix-card');
+    matrixCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            createCardAura(card);
         });
         
-        ticking = false;
-    }
-    
-    function requestParallaxUpdate() {
-        if (!ticking) {
-            requestAnimationFrame(updateParallax);
-            ticking = true;
-        }
-    }
-    
-    // Only enable parallax on devices that can handle it smoothly
-    if (window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
-    }
-}
-
-// Sophisticated typing effect for the main title
-function initializeTypingEffect() {
-    const nameTitle = document.querySelector('.name-title');
-    if (!nameTitle) return;
-    
-    const originalText = nameTitle.textContent;
-    const words = originalText.split(' ');
-    
-    // Only apply typing effect on larger screens and if motion is not reduced
-    if (window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        nameTitle.textContent = '';
-        nameTitle.style.opacity = '1';
-        
-        let wordIndex = 0;
-        let charIndex = 0;
-        let currentWord = '';
-        
-        function typeWriter() {
-            if (wordIndex < words.length) {
-                if (charIndex < words[wordIndex].length) {
-                    currentWord += words[wordIndex].charAt(charIndex);
-                    nameTitle.textContent = words.slice(0, wordIndex).join(' ') + 
-                                          (wordIndex > 0 ? ' ' : '') + currentWord;
-                    charIndex++;
-                    setTimeout(typeWriter, 80);
-                } else {
-                    wordIndex++;
-                    charIndex = 0;
-                    currentWord = '';
-                    setTimeout(typeWriter, 200);
-                }
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            
+            const nebula = card.querySelector('.card-nebula');
+            if (nebula) {
+                nebula.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(139, 38, 53, 0.2) 0%, rgba(74, 93, 35, 0.1) 50%, transparent 100%)`;
             }
-        }
+        });
+    });
+    
+    // Connection portal interactions
+    const connectionPortals = document.querySelectorAll('.connection-portal');
+    connectionPortals.forEach(portal => {
+        portal.addEventListener('mouseenter', () => {
+            createPortalEffect(portal);
+        });
         
-        // Start typing effect after initial page load
-        setTimeout(typeWriter, 1500);
-    }
-}
-
-// Enhanced hover effects and micro-interactions
-function initializeHoverEffects() {
-    // Profile image magnetic effect
-    const profileContainer = document.querySelector('.profile-image-container');
-    if (profileContainer) {
-        profileContainer.addEventListener('mousemove', (e) => {
-            const rect = profileContainer.getBoundingClientRect();
+        portal.addEventListener('click', (e) => {
+            createClickRipple(e, portal);
+        });
+    });
+    
+    // Avatar cosmic interaction
+    const avatarContainer = document.querySelector('.avatar-container');
+    if (avatarContainer) {
+        avatarContainer.addEventListener('mousemove', (e) => {
+            const rect = avatarContainer.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
             
             const moveX = x * 0.1;
             const moveY = y * 0.1;
             
-            profileContainer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            avatarContainer.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
         
-        profileContainer.addEventListener('mouseleave', () => {
-            profileContainer.style.transform = 'translate(0, 0)';
+        avatarContainer.addEventListener('mouseleave', () => {
+            avatarContainer.style.transform = 'translate(0, 0)';
         });
-    }
-    
-    // Contact links ripple effect
-    const contactLinks = document.querySelectorAll('.contact-link');
-    contactLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(255, 255, 255, 0.3);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-            `;
-            
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-    
-    // Add ripple animation keyframes
-    if (!document.querySelector('#ripple-styles')) {
-        const style = document.createElement('style');
-        style.id = 'ripple-styles';
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(2);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     }
 }
 
-// Interactive capability items
-function initializeCapabilityInteractions() {
-    const capabilityItems = document.querySelectorAll('.capability-item');
+function createCardAura(card) {
+    const aura = document.createElement('div');
+    aura.style.cssText = `
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: var(--gradient-cosmic);
+        border-radius: 25px;
+        opacity: 0;
+        filter: blur(20px);
+        pointer-events: none;
+        z-index: -1;
+        transition: opacity 0.3s ease;
+    `;
     
-    capabilityItems.forEach(item => {
-        const details = item.querySelector('.capability-details');
-        
-        item.addEventListener('mouseenter', () => {
-            // Subtle scale animation for details
-            if (details) {
-                details.style.transform = 'scale(1.02)';
-                details.style.transition = 'transform 0.3s ease';
+    card.style.position = 'relative';
+    card.appendChild(aura);
+    
+    setTimeout(() => {
+        aura.style.opacity = '0.3';
+    }, 10);
+    
+    card.addEventListener('mouseleave', () => {
+        aura.style.opacity = '0';
+        setTimeout(() => {
+            if (aura.parentNode) {
+                aura.remove();
             }
-        });
-        
-        item.addEventListener('mouseleave', () => {
-            if (details) {
-                details.style.transform = 'scale(1)';
-            }
-        });
-        
-        // Add click interaction for mobile
-        item.addEventListener('click', () => {
-            item.classList.toggle('active');
-        });
-    });
+        }, 300);
+    }, { once: true });
 }
 
-// Performance optimizations
+function createPortalEffect(portal) {
+    const effect = document.createElement('div');
+    const rect = portal.getBoundingClientRect();
+    
+    effect.style.cssText = `
+        position: fixed;
+        width: 100px;
+        height: 100px;
+        left: ${rect.left + rect.width/2 - 50}px;
+        top: ${rect.top + rect.height/2 - 50}px;
+        background: radial-gradient(circle, var(--oxblood) 0%, transparent 70%);
+        border-radius: 50%;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 9998;
+        animation: portalEffect 0.6s ease-out forwards;
+    `;
+    
+    document.body.appendChild(effect);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes portalEffect {
+            0% { transform: scale(0); opacity: 0.6; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    setTimeout(() => {
+        effect.remove();
+        style.remove();
+    }, 600);
+}
+
+function createClickRipple(event, element) {
+    const ripple = document.createElement('div');
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        transform: scale(0);
+        pointer-events: none;
+        z-index: 10;
+        animation: clickRipple 0.6s ease-out forwards;
+    `;
+    
+    element.style.position = 'relative';
+    element.appendChild(ripple);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes clickRipple {
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    setTimeout(() => {
+        ripple.remove();
+        style.remove();
+    }, 600);
+}
+
+// ===== PERFORMANCE OPTIMIZATIONS =====
 function initializePerformanceOptimizations() {
     // Lazy load images
-    const images = document.querySelectorAll('img[src]');
+    const images = document.querySelectorAll('img');
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -292,107 +552,150 @@ function initializePerformanceOptimizations() {
     
     images.forEach(img => imageObserver.observe(img));
     
+    // Optimize animations based on device capabilities
+    const isHighPerformance = window.devicePixelRatio <= 2 && 
+                             window.innerWidth >= 1024 && 
+                             !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!isHighPerformance) {
+        document.body.classList.add('reduced-animations');
+        
+        // Disable complex animations on lower-end devices
+        const complexAnimations = document.querySelectorAll(`
+            .quantum-particle,
+            .mesh-path,
+            .aurora-layer,
+            .hologram-scanlines
+        `);
+        
+        complexAnimations.forEach(element => {
+            element.style.animation = 'none';
+        });
+    }
+    
     // Debounced resize handler
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            // Recalculate any size-dependent animations
-            if (window.innerWidth <= 768) {
-                // Disable complex animations on mobile
-                document.body.classList.add('mobile-optimized');
-            } else {
-                document.body.classList.remove('mobile-optimized');
-            }
+            // Recalculate positions and sizes
+            updateCosmicPositions();
         }, 250);
     });
     
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+    // Intersection observer for performance
+    const performanceObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const element = entry.target;
+            if (entry.isIntersecting) {
+                element.classList.add('in-viewport');
+            } else {
+                element.classList.remove('in-viewport');
             }
         });
     });
     
-    // Preload critical resources
-    const criticalResources = [
-        'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap'
-    ];
+    // Observe performance-sensitive elements
+    const performanceElements = document.querySelectorAll(`
+        .quantum-field,
+        .neural-mesh,
+        .aurora-layer,
+        .neural-sphere
+    `);
     
-    criticalResources.forEach(resource => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'style';
-        link.href = resource;
-        document.head.appendChild(link);
+    performanceElements.forEach(element => {
+        performanceObserver.observe(element);
     });
 }
 
-// Add CSS classes for animations
-const style = document.createElement('style');
-style.textContent = `
-    .animate-in {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-    }
-    
-    .mobile-optimized * {
-        animation-duration: 0.3s !important;
-        transition-duration: 0.3s !important;
-    }
-    
-    .philosophy-card,
-    .impact-item,
-    .capability-item,
-    .metric-item {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-                    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .capability-item.active {
-        transform: translateY(-8px) scale(1.02) !important;
-        box-shadow: var(--shadow-xl) !important;
-        border-color: var(--accent-sage) !important;
-    }
-    
-    /* Theme transition smoothing */
-    * {
-        transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        transition-duration: 0.3s;
-    }
-`;
-document.head.appendChild(style);
+function updateCosmicPositions() {
+    // Update particle positions based on new viewport size
+    const particles = document.querySelectorAll('.quantum-particle');
+    particles.forEach(particle => {
+        particle.style.setProperty('--x', `${Math.random() * 100}%`);
+        particle.style.setProperty('--y', `${Math.random() * 100}%`);
+    });
+}
 
-// Initialize theme-aware animations
-function initializeThemeAwareAnimations() {
-    const html = document.documentElement;
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-                // Trigger any theme-specific animations here
-                document.body.style.transform = 'scale(0.99)';
-                setTimeout(() => {
-                    document.body.style.transform = 'scale(1)';
-                }, 150);
+// ===== ACCESSIBILITY ENHANCEMENTS =====
+function initializeAccessibility() {
+    // Keyboard navigation for interactive elements
+    const interactiveElements = document.querySelectorAll(`
+        .matrix-card,
+        .connection-portal,
+        .theme-toggle,
+        .nav-link
+    `);
+    
+    interactiveElements.forEach(element => {
+        element.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                element.click();
             }
+        });
+        
+        element.addEventListener('focus', () => {
+            element.style.outline = '2px solid var(--oxblood)';
+            element.style.outlineOffset = '2px';
+        });
+        
+        element.addEventListener('blur', () => {
+            element.style.outline = 'none';
         });
     });
     
-    observer.observe(html, {
-        attributes: true,
-        attributeFilter: ['data-theme']
-    });
+    // Announce theme changes to screen readers
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.style.position = 'absolute';
+            announcement.style.left = '-10000px';
+            announcement.textContent = `Theme changed to ${currentTheme} mode`;
+            document.body.appendChild(announcement);
+            
+            setTimeout(() => {
+                announcement.remove();
+            }, 1000);
+        });
+    }
 }
 
-// Initialize theme-aware animations
-initializeThemeAwareAnimations();
+// Initialize accessibility features
+document.addEventListener('DOMContentLoaded', initializeAccessibility);
+
+// ===== COSMIC ERROR HANDLING =====
+window.addEventListener('error', (e) => {
+    console.error('Cosmic error detected:', e.error);
+    // Graceful degradation - disable animations if errors occur
+    document.body.classList.add('safe-mode');
+});
+
+// ===== COSMIC UTILITIES =====
+function createCosmicElement(type, styles, parent) {
+    const element = document.createElement(type);
+    Object.assign(element.style, styles);
+    if (parent) parent.appendChild(element);
+    return element;
+}
+
+function getCosmicTheme() {
+    return document.documentElement.getAttribute('data-theme') || 'dark';
+}
+
+function isReducedMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+// Export for potential external use
+window.CosmicSystem = {
+    createCosmicElement,
+    getCosmicTheme,
+    isReducedMotion,
+    createCosmicRipple,
+    animateCounter
+};

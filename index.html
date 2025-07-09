@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,246 +7,476 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/39173417?v=4">
 </head>
 <body>
-    <div class="grain-overlay"></div>
-    
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <i class="fas fa-sun theme-icon light-icon"></i>
-        <i class="fas fa-moon theme-icon dark-icon"></i>
-    </button>
-    
-    <header class="hero-header">
-        <div class="ascii-container">
-            <pre class="ascii-art">
+    <!-- Ethereal Background System -->
+    <div class="ethereal-canvas">
+        <div class="quantum-field">
+            <div class="quantum-particle" style="--delay: 0s; --duration: 8s; --x: 10%; --y: 20%;"></div>
+            <div class="quantum-particle" style="--delay: 1s; --duration: 12s; --x: 80%; --y: 30%;"></div>
+            <div class="quantum-particle" style="--delay: 2s; --duration: 10s; --x: 60%; --y: 70%;"></div>
+            <div class="quantum-particle" style="--delay: 3s; --duration: 14s; --x: 20%; --y: 80%;"></div>
+            <div class="quantum-particle" style="--delay: 4s; --duration: 9s; --x: 90%; --y: 60%;"></div>
+        </div>
+        <div class="neural-mesh">
+            <svg class="mesh-svg" viewBox="0 0 1000 1000">
+                <defs>
+                    <linearGradient id="meshGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:var(--oxblood);stop-opacity:0.1" />
+                        <stop offset="100%" style="stop-color:var(--sage);stop-opacity:0.1" />
+                    </linearGradient>
+                </defs>
+                <path class="mesh-path" d="M100,200 Q300,100 500,200 T900,200" stroke="url(#meshGradient)" fill="none" stroke-width="1"/>
+                <path class="mesh-path" d="M200,400 Q400,300 600,400 T1000,400" stroke="url(#meshGradient)" fill="none" stroke-width="1"/>
+                <path class="mesh-path" d="M50,600 Q250,500 450,600 T850,600" stroke="url(#meshGradient)" fill="none" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="aurora-layer"></div>
+    </div>
+
+    <!-- Celestial Theme Toggle -->
+    <div class="theme-toggle-container">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <div class="toggle-cosmos">
+                <div class="toggle-sun">
+                    <div class="sun-rays"></div>
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="toggle-moon">
+                    <div class="moon-craters"></div>
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="toggle-stars">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+            </div>
+        </button>
+    </div>
+
+    <!-- Floating Navigation -->
+    <nav class="floating-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-symbol">
+                    <div class="symbol-core"></div>
+                    <div class="symbol-ring"></div>
+                </div>
+                <span class="brand-text">SIDC.AI</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#philosophy" class="nav-link">
+                    <span class="link-text">Philosophy</span>
+                    <div class="link-glow"></div>
+                </a>
+                <a href="#impact" class="nav-link">
+                    <span class="link-text">Impact</span>
+                    <div class="link-glow"></div>
+                </a>
+                <a href="#vision" class="nav-link">
+                    <span class="link-text">Vision</span>
+                    <div class="link-glow"></div>
+                </a>
+                <a href="#contact" class="nav-link">
+                    <span class="link-text">Contact</span>
+                    <div class="link-glow"></div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Constellation -->
+    <section class="hero-constellation">
+        <div class="constellation-container">
+            <!-- ASCII Art Hologram -->
+            <div class="ascii-hologram">
+                <div class="hologram-layers">
+                    <div class="ascii-layer primary">
 ███████╗██╗██████╗  ██████╗      █████╗ ██╗
 ██╔════╝██║██╔══██╗██╔════╝     ██╔══██╗██║
 ███████╗██║██║  ██║██║          ███████║██║
 ╚════██║██║██║  ██║██║          ██╔══██║██║
 ███████║██║██████╔╝╚██████╗ ██╗ ██║  ██║██║
 ╚══════╝╚═╝╚═════╝  ╚═════╝ ╚═╝ ╚═╝  ╚═╝╚═╝
-            </pre>
-        </div>
-        
-        <div class="profile-section">
-            <div class="profile-image-container">
-                <img src="https://avatars.githubusercontent.com/u/39173417?v=4" alt="Siddhartha Chaturvedi" class="profile-photo">
-                <div class="profile-glow"></div>
+                    </div>
+                    <div class="ascii-layer shadow"></div>
+                    <div class="ascii-layer glow"></div>
+                </div>
+                <div class="hologram-scanlines"></div>
             </div>
-            <h1 class="name-title">Siddhartha Chaturvedi</h1>
-            <p class="hero-tagline">Architect of AI-Human Synergy</p>
-        </div>
-        
-        <div class="hero-statement">
-            <p class="mission-text">Where artificial intelligence meets human curiosity, we unlock solutions to humanity's greatest challenges—climate adaptation, health security, and the preservation of knowledge itself.</p>
-        </div>
-    </header>
 
-    <main class="content-wrapper">
-        <section class="philosophy-section">
-            <h2 class="section-title">
-                <i class="fas fa-lightbulb section-icon"></i>
-                Core Philosophy
-            </h2>
-            <div class="philosophy-grid">
-                <div class="philosophy-card">
-                    <div class="card-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Research to Reality</h3>
-                    <p>Bridging groundbreaking research and real-world application, transforming theoretical possibilities into deployed solutions that address critical global challenges.</p>
-                </div>
-                <div class="philosophy-card">
-                    <div class="card-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Ethical Foundation</h3>
-                    <p>Building trust through responsible AI frameworks, ensuring innovation is paired with ethical deployment in high-stakes environments.</p>
-                </div>
-                <div class="philosophy-card">
-                    <div class="card-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Human-Centered Design</h3>
-                    <p>Technology that enhances rather than replaces human capabilities, fostering collaborative innovation and cross-functional excellence.</p>
-                </div>
-                <div class="philosophy-card">
-                    <div class="card-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Global Impact</h3>
-                    <p>Focusing on climate, health, and knowledge preservation challenges that transcend individual capability and require collective intelligence.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="impact-section">
-            <h2 class="section-title">
-                <i class="fas fa-star section-icon"></i>
-                Transformative Impact
-            </h2>
-            <div class="impact-timeline">
-                <div class="impact-item">
-                    <div class="impact-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <div class="impact-content">
-                        <h3>Azure OpenAI for Federal Clouds</h3>
-                        <p class="impact-description">Led the launch of secure AI deployment for critical infrastructure, enabling government agencies to harness AI while maintaining the highest security standards.</p>
-                        <ul class="impact-outcomes">
-                            <li>Enterprise-grade security for sensitive environments</li>
-                            <li>Cross-functional orchestration of research and engineering</li>
-                            <li>Responsible AI guidelines for high-stakes deployments</li>
-                        </ul>
-                    </div>
-                </div>
+            <!-- Transcendent Title -->
+            <div class="hero-transcendence">
+                <h1 class="transcendent-title">
+                    <span class="title-word" data-word="Accelerating">
+                        <span class="word-letters">
+                            <span class="letter">A</span><span class="letter">c</span><span class="letter">c</span><span class="letter">e</span><span class="letter">l</span><span class="letter">e</span><span class="letter">r</span><span class="letter">a</span><span class="letter">t</span><span class="letter">i</span><span class="letter">n</span><span class="letter">g</span>
+                        </span>
+                    </span>
+                    <span class="title-word gradient-word" data-word="Human">
+                        <span class="word-letters">
+                            <span class="letter">H</span><span class="letter">u</span><span class="letter">m</span><span class="letter">a</span><span class="letter">n</span>
+                        </span>
+                    </span>
+                    <span class="title-word" data-word="Discovery">
+                        <span class="word-letters">
+                            <span class="letter">D</span><span class="letter">i</span><span class="letter">s</span><span class="letter">c</span><span class="letter">o</span><span class="letter">v</span><span class="letter">e</span><span class="letter">r</span><span class="letter">y</span>
+                        </span>
+                    </span>
+                </h1>
                 
-                <div class="impact-item">
-                    <div class="impact-icon">
-                        <i class="fas fa-virus"></i>
-                    </div>
-                    <div class="impact-content">
-                        <h3>Premonition: Biothreat Detection</h3>
-                        <p class="impact-description">Co-created an award-winning system that revolutionizes global health security through advanced AI-powered early warning capabilities.</p>
-                        <ul class="impact-outcomes">
-                            <li>Fast Company recognition for world-changing innovation</li>
-                            <li>Early detection capabilities for disease outbreaks</li>
-                            <li>Research contributions to biological sciences</li>
-                        </ul>
-                    </div>
+                <div class="hero-essence">
+                    <p class="essence-text">Where artificial intelligence meets human curiosity, we unlock solutions to humanity's greatest challenges—climate adaptation, health security, and the preservation of knowledge itself.</p>
                 </div>
-                
-                <div class="impact-item">
-                    <div class="impact-icon">
-                        <i class="fas fa-heartbeat"></i>
+            </div>
+
+            <!-- Ethereal Profile -->
+            <div class="ethereal-profile">
+                <div class="profile-constellation">
+                    <div class="avatar-cosmos">
+                        <div class="cosmic-rings">
+                            <div class="cosmic-ring ring-1"></div>
+                            <div class="cosmic-ring ring-2"></div>
+                            <div class="cosmic-ring ring-3"></div>
+                        </div>
+                        <div class="avatar-container">
+                            <img src="https://avatars.githubusercontent.com/u/39173417?v=4" alt="Siddhartha Chaturvedi" class="avatar-image">
+                            <div class="avatar-aura"></div>
+                        </div>
                     </div>
-                    <div class="impact-content">
-                        <h3>AI for Health Initiative</h3>
-                        <p class="impact-description">Co-led Microsoft's healthcare AI program, creating bridges between academic research and commercial application for global health equity.</p>
-                        <ul class="impact-outcomes">
-                            <li>Large-scale pharmaceutical innovation partnerships</li>
-                            <li>Focus on underserved community access</li>
-                            <li>Academic-commercial research bridge building</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="impact-item">
-                    <div class="impact-icon">
-                        <i class="fas fa-clinic-medical"></i>
-                    </div>
-                    <div class="impact-content">
-                        <h3>Rural Healthcare Innovation</h3>
-                        <p class="impact-description">Founded a startup focused on disease pattern prediction for underserved communities, demonstrating technology's potential for equitable access.</p>
-                        <ul class="impact-outcomes">
-                            <li>Global recognition for entrepreneurial innovation</li>
-                            <li>Disease pattern prediction for rural communities</li>
-                            <li>Technology for social good demonstration</li>
-                        </ul>
+                    <div class="profile-identity">
+                        <h2 class="identity-name">Siddhartha Chaturvedi</h2>
+                        <p class="identity-title">Architect of AI-Human Synergy</p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section class="capabilities-section">
-            <h2 class="section-title">
-                <i class="fas fa-brain section-icon"></i>
-                Strategic Capabilities
-            </h2>
-            <div class="capabilities-showcase">
-                <div class="capability-item" data-capability="convergent">
-                    <div class="capability-header">
-                        <span class="capability-label">Convergent Intelligence</span>
-                        <span class="capability-description">AI-Human Synergy Architecture</span>
-                    </div>
-                    <div class="capability-details">
-                        <p>Orchestrating the intersection where artificial intelligence amplifies human discovery, designing systems that enhance rather than replace cognitive capabilities.</p>
+            <!-- Quantum Scroll Indicator -->
+            <div class="quantum-scroll">
+                <div class="scroll-portal">
+                    <div class="portal-ring"></div>
+                    <div class="portal-core">
+                        <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
-                <div class="capability-item" data-capability="emergent">
-                    <div class="capability-header">
-                        <span class="capability-label">Emergent Systems</span>
-                        <span class="capability-description">Adaptive Solution Building</span>
-                    </div>
-                    <div class="capability-details">
-                        <p>Crafting resilient systems that evolve with changing global challenges, developing early warning systems and scalable architectures.</p>
-                    </div>
-                </div>
-                <div class="capability-item" data-capability="purposeful">
-                    <div class="capability-header">
-                        <span class="capability-label">Purposeful Innovation</span>
-                        <span class="capability-description">Social Impact Catalyst</span>
-                    </div>
-                    <div class="capability-details">
-                        <p>Channeling technological advancement toward humanity's greatest needs, focusing on climate adaptation, health security, and knowledge preservation.</p>
-                    </div>
-                </div>
-                <div class="capability-item" data-capability="ethical">
-                    <div class="capability-header">
-                        <span class="capability-label">Ethical Foundations</span>
-                        <span class="capability-description">Responsible Progress Guardian</span>
-                    </div>
-                    <div class="capability-details">
-                        <p>Ensuring advancement serves humanity's highest aspirations through responsible AI frameworks and transparent, accountable systems.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="vision-section">
-            <h2 class="section-title">
-                <i class="fas fa-eye section-icon"></i>
-                The Vision Forward
-            </h2>
-            <div class="vision-content">
-                <p class="vision-statement">The intersection of artificial intelligence and human discovery represents more than technological advancement—it embodies our collective potential to solve challenges that transcend individual capability. Through careful orchestration of research, ethics, and practical application, we create systems that genuinely accelerate human understanding and progress.</p>
-                
-                <div class="vision-metrics">
-                    <div class="metric-item">
-                        <div class="metric-number">10+</div>
-                        <div class="metric-label">Years in AI Innovation</div>
-                    </div>
-                    <div class="metric-item">
-                        <div class="metric-number">3</div>
-                        <div class="metric-label">Award-Winning Systems</div>
-                    </div>
-                    <div class="metric-item">
-                        <div class="metric-number">∞</div>
-                        <div class="metric-label">Possibilities Ahead</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="contact-footer">
-        <div class="contact-content">
-            <p class="contact-invitation">Ready to accelerate discovery together?</p>
-            <div class="contact-links">
-                <a href="mailto:s@sidc.ai" class="contact-link primary">
-                    <i class="fas fa-envelope"></i>
-                    <span>s@sidc.ai</span>
-                </a>
-                <a href="https://sidc.ai" class="contact-link" target="_blank">
-                    <i class="fas fa-globe"></i>
-                    <span>sidc.ai</span>
-                </a>
-                <a href="https://github.com/siddharthachaturvedi" class="contact-link" target="_blank">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-                <a href="https://linkedin.com/in/siddharth" class="contact-link" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
-                </a>
+                <span class="scroll-whisper">Explore the infinite</span>
             </div>
         </div>
-        <div class="footer-quote">
-            <p>"In the space between what is and what could be, discovery awaits."</p>
+    </section>
+
+    <!-- Philosophy Dimension -->
+    <section id="philosophy" class="philosophy-dimension">
+        <div class="dimension-container">
+            <div class="dimension-header">
+                <div class="header-constellation">
+                    <h2 class="dimension-title">Core Philosophy</h2>
+                    <div class="title-aurora"></div>
+                </div>
+                <p class="dimension-essence">The fundamental principles that guide our approach to innovation and discovery</p>
+            </div>
+
+            <div class="philosophy-matrix">
+                <div class="matrix-card" data-philosophy="research">
+                    <div class="card-cosmos">
+                        <div class="card-nebula"></div>
+                        <div class="card-constellation">
+                            <div class="constellation-icon">
+                                <i class="fas fa-rocket"></i>
+                                <div class="icon-orbit"></div>
+                            </div>
+                            <h3 class="constellation-title">Research to Reality</h3>
+                            <p class="constellation-essence">Bridging groundbreaking research and real-world application, transforming theoretical possibilities into deployed solutions that address critical global challenges.</p>
+                            <div class="constellation-signature">
+                                <span class="signature-text">Innovation</span>
+                                <div class="signature-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="matrix-card" data-philosophy="ethics">
+                    <div class="card-cosmos">
+                        <div class="card-nebula"></div>
+                        <div class="card-constellation">
+                            <div class="constellation-icon">
+                                <i class="fas fa-shield-alt"></i>
+                                <div class="icon-orbit"></div>
+                            </div>
+                            <h3 class="constellation-title">Ethical Foundation</h3>
+                            <p class="constellation-essence">Building trust through responsible AI frameworks, ensuring innovation is paired with ethical deployment in high-stakes environments.</p>
+                            <div class="constellation-signature">
+                                <span class="signature-text">Responsibility</span>
+                                <div class="signature-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="matrix-card" data-philosophy="human">
+                    <div class="card-cosmos">
+                        <div class="card-nebula"></div>
+                        <div class="card-constellation">
+                            <div class="constellation-icon">
+                                <i class="fas fa-users"></i>
+                                <div class="icon-orbit"></div>
+                            </div>
+                            <h3 class="constellation-title">Human-Centered Design</h3>
+                            <p class="constellation-essence">Technology that enhances rather than replaces human capabilities, fostering collaborative innovation and cross-functional excellence.</p>
+                            <div class="constellation-signature">
+                                <span class="signature-text">Collaboration</span>
+                                <div class="signature-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="matrix-card" data-philosophy="global">
+                    <div class="card-cosmos">
+                        <div class="card-nebula"></div>
+                        <div class="card-constellation">
+                            <div class="constellation-icon">
+                                <i class="fas fa-globe"></i>
+                                <div class="icon-orbit"></div>
+                            </div>
+                            <h3 class="constellation-title">Global Impact</h3>
+                            <p class="constellation-essence">Focusing on climate, health, and knowledge preservation challenges that transcend individual capability and require collective intelligence.</p>
+                            <div class="constellation-signature">
+                                <span class="signature-text">Scale</span>
+                                <div class="signature-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Timeline -->
+    <section id="impact" class="impact-timeline-section">
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <h2 class="timeline-title">Transformative Impact</h2>
+                <p class="timeline-essence">Breakthrough innovations that shape the future of human discovery</p>
+            </div>
+
+            <div class="temporal-timeline">
+                <div class="timeline-thread"></div>
+                
+                <div class="timeline-moment" data-year="2024">
+                    <div class="moment-portal">
+                        <div class="portal-energy"></div>
+                        <div class="portal-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                    </div>
+                    <div class="moment-content">
+                        <div class="moment-timestamp">2024</div>
+                        <h3 class="moment-title">Azure OpenAI for Federal Clouds</h3>
+                        <p class="moment-story">Led the launch of secure AI deployment for critical infrastructure, enabling government agencies to harness AI while maintaining the highest security standards.</p>
+                        <div class="moment-constellation">
+                            <span class="constellation-tag">Enterprise Security</span>
+                            <span class="constellation-tag">Government AI</span>
+                            <span class="constellation-tag">Responsible Deployment</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-moment" data-year="2023">
+                    <div class="moment-portal">
+                        <div class="portal-energy"></div>
+                        <div class="portal-icon">
+                            <i class="fas fa-virus"></i>
+                        </div>
+                    </div>
+                    <div class="moment-content">
+                        <div class="moment-timestamp">2023</div>
+                        <h3 class="moment-title">Premonition: Biothreat Detection</h3>
+                        <p class="moment-story">Co-created an award-winning system that revolutionizes global health security through advanced AI-powered early warning capabilities.</p>
+                        <div class="moment-constellation">
+                            <span class="constellation-tag">Fast Company Award</span>
+                            <span class="constellation-tag">Health Security</span>
+                            <span class="constellation-tag">Early Detection</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-moment" data-year="2022">
+                    <div class="moment-portal">
+                        <div class="portal-energy"></div>
+                        <div class="portal-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                    </div>
+                    <div class="moment-content">
+                        <div class="moment-timestamp">2022</div>
+                        <h3 class="moment-title">AI for Health Initiative</h3>
+                        <p class="moment-story">Co-led Microsoft's healthcare AI program, creating bridges between academic research and commercial application for global health equity.</p>
+                        <div class="moment-constellation">
+                            <span class="constellation-tag">Healthcare AI</span>
+                            <span class="constellation-tag">Global Equity</span>
+                            <span class="constellation-tag">Academic Bridge</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Cosmos -->
+    <section id="vision" class="vision-cosmos">
+        <div class="cosmos-container">
+            <div class="vision-duality">
+                <div class="vision-narrative">
+                    <h2 class="narrative-title">The Vision Forward</h2>
+                    <div class="narrative-essence">
+                        <p>The intersection of artificial intelligence and human discovery represents more than technological advancement—it embodies our collective potential to solve challenges that transcend individual capability.</p>
+                        <p>Through careful orchestration of research, ethics, and practical application, we create systems that genuinely accelerate human understanding and progress.</p>
+                    </div>
+                    
+                    <div class="cosmic-metrics">
+                        <div class="metric-constellation">
+                            <div class="metric-value" data-count="10">0</div>
+                            <div class="metric-label">Years in AI Innovation</div>
+                            <div class="metric-aurora"></div>
+                        </div>
+                        <div class="metric-constellation">
+                            <div class="metric-value" data-count="3">0</div>
+                            <div class="metric-label">Award-Winning Systems</div>
+                            <div class="metric-aurora"></div>
+                        </div>
+                        <div class="metric-constellation">
+                            <div class="metric-value">∞</div>
+                            <div class="metric-label">Possibilities Ahead</div>
+                            <div class="metric-aurora"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vision-manifestation">
+                    <div class="manifestation-core">
+                        <div class="neural-sphere">
+                            <div class="sphere-layers">
+                                <div class="sphere-layer layer-1"></div>
+                                <div class="sphere-layer layer-2"></div>
+                                <div class="sphere-layer layer-3"></div>
+                            </div>
+                            <div class="sphere-nucleus">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="sphere-connections">
+                                <div class="connection-node node-1"></div>
+                                <div class="connection-node node-2"></div>
+                                <div class="connection-node node-3"></div>
+                                <div class="connection-node node-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Nexus -->
+    <section id="contact" class="contact-nexus">
+        <div class="nexus-container">
+            <div class="nexus-invitation">
+                <h2 class="invitation-title">Ready to accelerate discovery together?</h2>
+                <p class="invitation-essence">Let's explore the possibilities at the intersection of AI and human potential</p>
+            </div>
+
+            <div class="connection-matrix">
+                <a href="mailto:s@sidc.ai" class="connection-portal primary">
+                    <div class="portal-cosmos">
+                        <div class="portal-nebula"></div>
+                        <div class="portal-constellation">
+                            <div class="constellation-symbol">
+                                <i class="fas fa-envelope"></i>
+                                <div class="symbol-resonance"></div>
+                            </div>
+                            <div class="constellation-data">
+                                <h3 class="data-label">Email</h3>
+                                <p class="data-value">s@sidc.ai</p>
+                            </div>
+                            <div class="constellation-gateway">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://sidc.ai" class="connection-portal" target="_blank">
+                    <div class="portal-cosmos">
+                        <div class="portal-nebula"></div>
+                        <div class="portal-constellation">
+                            <div class="constellation-symbol">
+                                <i class="fas fa-globe"></i>
+                                <div class="symbol-resonance"></div>
+                            </div>
+                            <div class="constellation-data">
+                                <h3 class="data-label">Website</h3>
+                                <p class="data-value">sidc.ai</p>
+                            </div>
+                            <div class="constellation-gateway">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/siddharthachaturvedi" class="connection-portal" target="_blank">
+                    <div class="portal-cosmos">
+                        <div class="portal-nebula"></div>
+                        <div class="portal-constellation">
+                            <div class="constellation-symbol">
+                                <i class="fab fa-github"></i>
+                                <div class="symbol-resonance"></div>
+                            </div>
+                            <div class="constellation-data">
+                                <h3 class="data-label">GitHub</h3>
+                                <p class="data-value">@siddharthachaturvedi</p>
+                            </div>
+                            <div class="constellation-gateway">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://linkedin.com/in/siddharth" class="connection-portal" target="_blank">
+                    <div class="portal-cosmos">
+                        <div class="portal-nebula"></div>
+                        <div class="portal-constellation">
+                            <div class="constellation-symbol">
+                                <i class="fab fa-linkedin"></i>
+                                <div class="symbol-resonance"></div>
+                            </div>
+                            <div class="constellation-data">
+                                <h3 class="data-label">LinkedIn</h3>
+                                <p class="data-value">@siddharth</p>
+                            </div>
+                            <div class="constellation-gateway">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infinite Footer -->
+    <footer class="infinite-footer">
+        <div class="footer-cosmos">
+            <div class="cosmos-quote">
+                <p>"In the space between what is and what could be, discovery awaits."</p>
+            </div>
+            <div class="cosmos-signature">
+                <p>© 2024 SIDC.AI - Accelerating Human Discovery</p>
+            </div>
         </div>
     </footer>
 
