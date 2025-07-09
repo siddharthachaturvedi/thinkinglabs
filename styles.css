@@ -103,20 +103,15 @@ body {
     width: 100%;
     height: 1px;
     left: 0;
+    top: var(--position);
 }
 
 .grid-line.vertical {
     width: 1px;
     height: 100%;
     top: 0;
+    left: var(--position);
 }
-
-.grid-line:nth-child(1) { top: 20%; }
-.grid-line:nth-child(2) { top: 50%; }
-.grid-line:nth-child(3) { top: 80%; }
-.grid-line:nth-child(4) { left: 20%; }
-.grid-line:nth-child(5) { left: 50%; }
-.grid-line:nth-child(6) { left: 80%; }
 
 @keyframes gridPulse {
     0%, 100% { opacity: 0; transform: scaleX(0); }
@@ -259,6 +254,10 @@ body {
 .nav-link:hover {
     color: var(--primary-green);
     transform: translateY(-2px);
+}
+
+.nav-link.active {
+    color: var(--primary-green);
 }
 
 .nav-link.nav-cta {
@@ -981,10 +980,15 @@ body {
 @media (max-width: 768px) {
     .nav-container {
         padding: var(--space-md);
+        flex-wrap: wrap;
+        gap: var(--space-md);
     }
     
     .nav-links {
         gap: var(--space-md);
+        order: 3;
+        width: 100%;
+        justify-content: center;
     }
     
     .nav-link {
@@ -1057,11 +1061,25 @@ body {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+    
+    .particle,
+    .grid-line,
+    .connection-path,
+    .icon-pulse {
+        animation: none !important;
+    }
 }
 
 @media (prefers-contrast: high) {
     :root {
         --primary-green: #00ff00;
         --secondary-green: #00cc00;
+    }
+    
+    .pillar-card,
+    .timeline-content,
+    .showcase-item,
+    .contact-card {
+        border-width: 2px;
     }
 }

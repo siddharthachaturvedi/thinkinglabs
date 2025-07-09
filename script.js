@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeScrollEffects();
     initializeInteractions();
     initializePerformance();
+    initializeAccessibility();
 });
 
 // ===== ANIMATIONS =====
@@ -63,6 +64,10 @@ function animatePillarCard(card) {
     
     elements.forEach((element, index) => {
         if (element) {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            
             setTimeout(() => {
                 element.style.opacity = '1';
                 element.style.transform = 'translateY(0)';
@@ -85,6 +90,10 @@ function animateTimelineItem(item) {
     }
     
     if (content) {
+        content.style.opacity = '0';
+        content.style.transform = 'translateY(20px)';
+        content.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        
         setTimeout(() => {
             content.style.opacity = '1';
             content.style.transform = 'translateY(0)';
@@ -106,6 +115,10 @@ function animateShowcaseItem(item) {
     }
     
     if (content) {
+        content.style.opacity = '0';
+        content.style.transform = 'translateY(20px)';
+        content.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        
         setTimeout(() => {
             content.style.opacity = '1';
             content.style.transform = 'translateY(0)';
@@ -122,7 +135,7 @@ function initializeNavigation() {
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
-            if (href.startsWith('#')) {
+            if (href && href.startsWith('#')) {
                 e.preventDefault();
                 const targetId = href.substring(1);
                 const targetSection = document.getElementById(targetId);
@@ -159,15 +172,17 @@ function initializeNavigation() {
     
     // Navigation background on scroll
     const nav = document.querySelector('.main-nav');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            nav.style.background = 'rgba(0, 0, 0, 0.95)';
-            nav.style.borderBottomColor = 'rgba(0, 255, 136, 0.2)';
-        } else {
-            nav.style.background = 'rgba(0, 0, 0, 0.8)';
-            nav.style.borderBottomColor = 'rgba(0, 255, 136, 0.1)';
-        }
-    });
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(0, 0, 0, 0.95)';
+                nav.style.borderBottomColor = 'rgba(0, 255, 136, 0.2)';
+            } else {
+                nav.style.background = 'rgba(0, 0, 0, 0.8)';
+                nav.style.borderBottomColor = 'rgba(0, 255, 136, 0.1)';
+            }
+        });
+    }
 }
 
 // ===== SCROLL EFFECTS =====
@@ -176,9 +191,8 @@ function initializeScrollEffects() {
     const particles = document.querySelectorAll('.particle');
     const gridLines = document.querySelectorAll('.grid-line');
     
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', throttle(() => {
         const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
         
         particles.forEach((particle, index) => {
             const speed = 0.5 + (index * 0.1);
@@ -189,7 +203,7 @@ function initializeScrollEffects() {
             const speed = 0.2 + (index * 0.05);
             line.style.transform = `translateY(${scrolled * speed}px)`;
         });
-    });
+    }, 16));
 }
 
 // ===== INTERACTIONS =====
@@ -249,7 +263,6 @@ function initializeInteractions() {
 
 function createHoverEffect(element) {
     const effect = document.createElement('div');
-    const rect = element.getBoundingClientRect();
     
     effect.style.cssText = `
         position: absolute;
@@ -372,7 +385,6 @@ function initializePerformance() {
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            // Recalculate positions if needed
             updateAnimationPositions();
         }, 250);
     });
@@ -417,9 +429,6 @@ function initializeAccessibility() {
         });
     });
 }
-
-// Initialize accessibility features
-document.addEventListener('DOMContentLoaded', initializeAccessibility);
 
 // ===== ERROR HANDLING =====
 window.addEventListener('error', (e) => {
